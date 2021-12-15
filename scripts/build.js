@@ -63,7 +63,10 @@ const resolve = require("./rollup-plugin/resolve")
     ]
     const bundle = await rollup.rollup({
         external(filePath) {
-            const id = filePath.replace(/\\/gu, "/").split("/")[0]
+            const [scope, name] = filePath.replace(/\\/gu, "/").split("/")
+            // eslint-disable-next-line require-unicode-regexp
+            const id = /^@/.test(scope) ? `${scope}/${name}` : scope
+
             if (
                 id === "" ||
                 id === "." ||
