@@ -1,3 +1,4 @@
 /node_modules
 /scripts/shim/core-rules.js
 /test.*
+yarn.lock
